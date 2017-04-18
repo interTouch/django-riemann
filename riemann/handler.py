@@ -38,4 +38,6 @@ class RiemannHandler(logging.Handler, object):
             c.send(event)
         except TransportError:
             print 'Riemann.TransportError: Could not open TCP socket.'
+        except Exception, e:
+            print 'Riemann.FatalError: {}'.format(e)
 
