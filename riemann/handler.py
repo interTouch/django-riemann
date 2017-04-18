@@ -3,6 +3,7 @@ import logging
 import traceback
 from django.conf import settings
 from bernhard import Client, UDPTransport, TCPTransport
+from bernhard import TransportError
 
 RIEMANN_HOST = getattr(settings, 'RIEMANN_LOGGER_HOST', '127.0.0.1')
 RIEMANN_PORT = getattr(settings, 'RIEMANN_LOGGER_PORT', '5555')
@@ -33,5 +34,8 @@ class RiemannHandler(logging.Handler, object):
         if record.exc_info:
             tb = traceback.format_exception(*record.exc_info)
             event['description'] = ''.join(tb)
+        try:
+            c.send(event)
+        except TransportError:
+            print 'Riemann.TransportError: Could not open TCP socket.'
 
-        c.send(event)
