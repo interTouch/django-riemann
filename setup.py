@@ -11,7 +11,7 @@ setup(
     version='0.0.3',
     url='https://github.com/honza/django-riemann',
     install_requires=[
-        'bernhard'
+        'bernhard', 'future'
     ],
     description='Send logging data to Riemann',
     long_description=long_desc,
