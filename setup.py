@@ -8,7 +8,7 @@ except IOError:
 
 setup(
     name='django-riemann',
-    version='0.0.3',
+    version='0.0.4',
     url='https://github.com/honza/django-riemann',
     install_requires=[
         'bernhard'
