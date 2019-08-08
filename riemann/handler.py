@@ -1,4 +1,5 @@
 import socket
+import future
 import logging
 import traceback
 from django.conf import settings
@@ -37,7 +38,7 @@ class RiemannHandler(logging.Handler, object):
         try:
             c.send(event)
         except TransportError:
-            print 'Riemann.TransportError: Could not open TCP socket.'
+            print('Riemann.TransportError: Could not open TCP socket.')
         except Exception, e:
-            print 'Riemann.FatalError: {}'.format(e)
+            print('Riemann.FatalError: {}'.format(e))
 
